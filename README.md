@@ -1,6 +1,6 @@
 # Serviço de consulta de CEP
 
-Trabalho 2 de Reuso de Software da UFC Quixadá. Dupla: Eduarda Rodrigues e Nathalia.
+Trabalho 2 de Reuso de Software da UFC Quixadá. Dupla: Maria Eduarda Almeida Rodrigues e Nathalia de Oliveira Lima.
 
 Uma API REST preenche o endereço de entrega de uma loja e o endereço de matrícula de uma escola. Os dois formulários chamam a mesma rota. A consulta usa o ViaCEP e requer internet. Os testes simulam o provedor e podem ser executados sem rede após a instalação.
 
@@ -25,9 +25,9 @@ Em um clone já preparado, entre na raiz do projeto, ative o ambiente e execute 
 | [Documentação interativa](http://127.0.0.1:8000/docs) | Consultar e experimentar o contrato da API |
 | [OpenAPI](http://127.0.0.1:8000/openapi.json) | Ler o contrato em JSON |
 
-## Reproduzir a demonstração
+## Reproduzir a demonstração com o CEP da UFC em Quixadá
 
-1. Abra a loja e consulte 01001-000. Confira Praça da Sé, Sé, São Paulo e SP.
+1. Abra a loja e consulte 63902-580. Confira Avenida José de Freitas Queiroz, bairro Cedro, Quixadá, CE.
 2. Abra a escola e consulte o mesmo CEP. Confira os mesmos campos e as duas chamadas HTTP 200 no terminal.
 3. Troque o CEP por abc e consulte novamente. A tela limpa o endereço e mostra a mensagem de formato inválido. O terminal registra HTTP 400.
 
@@ -35,12 +35,12 @@ Em um clone já preparado, entre na raiz do projeto, ative o ambiente e execute 
 
 Com o servidor ativo, execute em outro terminal:
 ```bash
-curl -i http://127.0.0.1:8000/ceps/01001-000
+curl -i http://127.0.0.1:8000/ceps/63902-580
 ```
 
 A rota GET /ceps/{cep} aceita oito dígitos com hífen opcional. No sucesso devolve:
 ```json
-{"cep":"01001-000","logradouro":"Praça da Sé","bairro":"Sé","cidade":"São Paulo","uf":"SP"}
+{"cep":"63902-580","logradouro":"Avenida José de Freitas Queiroz","bairro":"Cedro","cidade":"Quixadá","uf":"CE"}
 ```
 
 Os erros usam o campo JSON detail. HTTP 400 indica formato inválido, 404 indica CEP inexistente e 502 indica falha ao consultar ou interpretar o provedor.
