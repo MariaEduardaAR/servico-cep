@@ -1,3 +1,6 @@
+from pathlib import Path
+
+from fastapi.staticfiles import StaticFiles
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 
@@ -28,3 +31,7 @@ def buscar_endereco(cep: str):
         raise HTTPException(404, detail=str(erro)) from erro
     except FalhaViaCEP as erro:
         raise HTTPException(502, detail=str(erro)) from erro
+
+
+pasta_formularios = Path(__file__).resolve().parent.parent / "consumidores"
+app.mount("/formularios", StaticFiles(directory=pasta_formularios), name="formularios")
